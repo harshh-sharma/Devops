@@ -1,29 +1,36 @@
 pipeline {
     agent {
-        label 'agent'
+        label 'linux'
     }
 
     stages {
 
-        stage('Checkout') {
-            steps {
-                echo 'Downloading code'
-                sh 'invalid-command'
-            }
-        }
-
         stage('Build') {
             steps {
-                sh 'hostname'
-                sh 'pwd'
-                sh 'ls -la'
+                echo 'Build Started'
+                sh 'invalid-command'
             }
         }
 
         stage('Test') {
             steps {
-                echo 'Running tests'
+                echo 'Running Tests'
             }
+        }
+    }
+
+    post {
+
+        always {
+            echo 'Always runs'
+        }
+
+        success {
+            echo 'Build Successful'
+        }
+
+        failure {
+            echo 'Build Failed'
         }
     }
 }
