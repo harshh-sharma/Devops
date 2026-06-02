@@ -1,22 +1,18 @@
 pipeline {
-    agent {
-        label 'agent'
-    }
+    agent any
 
-    environment {
-        APP_NAME = 'node-app'
-        ENVIRONMENT = 'dev'
+    parameters {
+        choice(
+            name: 'ENVIRONMENT',
+            choices: ['dev', 'qa', 'prod'],
+            description: 'Select environment'
+        )
     }
 
     stages {
-
-        stage('Print Variables') {
+        stage('Deploy') {
             steps {
-                echo "App: ${APP_NAME}"
-                echo "Environment: ${ENVIRONMENT}"
-
-                sh 'echo $APP_NAME'
-                sh 'echo $ENVIRONMENT'
+                echo "Deploying to ${params.ENVIRONMENT}"
             }
         }
     }
