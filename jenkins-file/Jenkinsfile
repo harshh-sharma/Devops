@@ -8,6 +8,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo 'Downloading code'
+                sh 'invalid-command'
             }
         }
 
