@@ -1,36 +1,23 @@
 pipeline {
     agent {
-        label 'agent'
+        label 'linux'
+    }
+
+    environment {
+        APP_NAME = 'node-app'
+        ENVIRONMENT = 'dev'
     }
 
     stages {
 
-        stage('Build') {
+        stage('Print Variables') {
             steps {
-                echo 'Build Started'
-                sh 'invalid-command'
+                echo "App: ${APP_NAME}"
+                echo "Environment: ${ENVIRONMENT}"
+
+                sh 'echo $APP_NAME'
+                sh 'echo $ENVIRONMENT'
             }
-        }
-
-        stage('Test') {
-            steps {
-                echo 'Running Tests'
-            }
-        }
-    }
-
-    post {
-
-        always {
-            echo 'Always runs'
-        }
-
-        success {
-            echo 'Build Successful'
-        }
-
-        failure {
-            echo 'Build Failed'
         }
     }
 }
