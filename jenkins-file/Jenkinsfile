@@ -1,9 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        label 'linux'
+    }
 
     stages {
-
-        stage('Build') {
+        stage('Agent Test') {
             steps {
                 sh 'hostname'
                 sh 'whoami'
