@@ -2,11 +2,12 @@ pipeline {
     agent any
 
     stages {
+
         stage('Build') {
             steps {
-                echo 'Hello from Jenkinsfile new one --'
+                sh 'hostname'
+                sh 'whoami'
                 sh 'pwd'
-                sh 'ls -la'
             }
         }
     }
