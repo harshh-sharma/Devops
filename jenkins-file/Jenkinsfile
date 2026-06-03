@@ -2,11 +2,20 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+
+        stage('Credentials Demo') {
             steps {
-                echo 'Hello from Jenkinsfile'
-                sh 'pwd'
-                sh 'ls -la'
+
+                withCredentials([
+                    string(
+                        credentialsId: 'my-secret',
+                        variable: 'SECRET'
+                    )
+                ]) {
+
+                    sh 'echo Secret Loaded'
+                    sh 'echo $SECRET'
+                }
             }
         }
     }
