@@ -6,37 +6,33 @@ pipeline {
     stages {
 
         stage('Checkout') {
-            steps {
+             steps {
                 checkout scm
             }
         }
 
         stage('Install') {
             steps {
-                sh 'npm install'
+                dir('jenkins-file') {
+                    sh 'npm install'
+                }
             }
         }
 
         stage('Test') {
             steps {
-                sh 'npm test'
+                dir('jenkins-file') {
+                    sh 'npm test'
+                }
             }
         }
 
         stage('Build') {
             steps {
-                sh 'npm run build'
+                dir('jenkins-file') {
+                    sh 'npm run build'
+                }
             }
-        }
-    }
-
-    post {
-        success {
-            echo 'Pipeline Successful'
-        }
-
-        failure {
-            echo 'Pipeline Failed'
         }
     }
 }
